@@ -10,8 +10,7 @@ module.exports = {
             let objects = [];
             const response = s3.listObjectsV2({
                 Bucket: "pointer-media",
-                MaxKeys: 10,
-                Prefix: "rbrasil"
+                MaxKeys: 10
             }).promise();
     
             await response.then(data => {
