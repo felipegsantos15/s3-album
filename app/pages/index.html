@@ -3,15 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <title>Index</title>
     <script>
-        fetch('http://localhost:7345/objects')
-        .then((response) => {return response.json()})
-        .then(res => {
-            console.log(res)
-        })
+        getImages = async () => {
+            var images = [];
+            await fetch('http://localhost:7345/objects')
+            .then((response) => {return response.json()})
+            .then(res => {
+                images = res.data;
+            })
+            listImages(images);
+        }
+
+        listImages = (images) => {
+            var ul = document.createElement('ul');
+            document.getElementById('myList').appendChild(ul);
+            images.forEach(image => {
+                var li = document.createElement('li');
+                var img = document.createElement('img');
+                li.appendChild(img);
+                ul.appendChild(li);
+                img.src += image;
+
+            });
+        }
+        var images = getImages();
     </script>
 </head>
 <body>
+    <div class="container">
+        <h1>me de imagens</h1>
+        <div id="myList"></div>
+    </div>
 </body>
 </html>
