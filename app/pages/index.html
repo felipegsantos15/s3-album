@@ -23,11 +23,11 @@
             let i = 0;
             images.forEach(image => {
                 var main = document.createElement('div');
-                main.className = 'col-sm box';
+                main.className = 'col-sm';
                 divRow.append(main);
                 
                 var img = document.createElement('img');
-                img.className = 'frame';
+                img.className = 'frame rounded mx-auto d-block';
                 main.append(img);
                 
                 var text = document.createElement('a');
@@ -45,9 +45,6 @@
         
     </script>
     <style>
-        body {
-            background-color: #ddd;
-        }
         .frame {
             width: 250px;
         }
