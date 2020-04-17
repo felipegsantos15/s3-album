@@ -17,23 +17,58 @@
         }
 
         listImages = (images) => {
-            var ul = document.createElement('ul');
-            document.getElementById('myList').appendChild(ul);
+            var divRow = document.createElement('div');
+            divRow.className = 'row';
+            document.getElementById('myList').appendChild(divRow);
+            let i = 0;
             images.forEach(image => {
-                var li = document.createElement('li');
-                var img = document.createElement('img');
-                li.appendChild(img);
-                ul.appendChild(li);
-                img.src += image;
+                var main = document.createElement('div');
+                main.className = 'col-sm border-box';
+                divRow.append(main);
+                
+                var frame = document.createElement('div');
+                frame.className = "frame mx-auto d-block";
+                main.append(frame);
 
+                var img = document.createElement('img');
+                img.className = 'img-size rounded';
+                img.alt = image;
+                frame.append(img);
+                
+                var text = document.createElement('a');
+                text.className = 'text figure-caption';
+                text.href = image;
+                text.innerHTML = '<br><div class=text-box>URL DA IMAGEM</div>';
+                main.append(text);
+
+                img.src = image;
+                img.id = 'list-'+ i;
+                i++;
             });
         }
         var images = getImages();
+        
     </script>
+    <style>
+        .frame {
+            width: 200px;
+            height: 150px;
+        }
+        .border-box {
+            margin: 10px;
+        }
+        .img-size {
+            width:100%
+        }
+        .text {
+            font-size: 12pt;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1>me de imagens</h1>
+        <h1>lista de imagem</h1>
         <div id="myList"></div>
     </div>
 </body>
