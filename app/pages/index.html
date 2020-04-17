@@ -23,15 +23,20 @@
             let i = 0;
             images.forEach(image => {
                 var main = document.createElement('div');
-                main.className = 'col-sm';
+                main.className = 'col-sm border-box';
                 divRow.append(main);
                 
+                var frame = document.createElement('div');
+                frame.className = "frame mx-auto d-block";
+                main.append(frame);
+
                 var img = document.createElement('img');
-                img.className = 'frame rounded mx-auto d-block';
-                main.append(img);
+                img.className = 'img-size rounded';
+                img.alt = image;
+                frame.append(img);
                 
                 var text = document.createElement('a');
-                text.className = 'text';
+                text.className = 'text figure-caption';
                 text.href = image;
                 text.innerHTML = '<br><div class=text-box>URL DA IMAGEM</div>';
                 main.append(text);
@@ -46,18 +51,18 @@
     </script>
     <style>
         .frame {
-            width: 250px;
+            width: 200px;
+            height: 150px;
+        }
+        .border-box {
+            margin: 10px;
+        }
+        .img-size {
+            width:100%
         }
         .text {
             font-size: 12pt;
             text-align: center;
-        }
-        .box {
-            box-sizing: content-box;
-            width: 250px;
-            height: 250px;
-            padding: 10px;
-            border: 5px solid #fff;
         }
     </style>
 </head>
