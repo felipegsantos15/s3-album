@@ -46,7 +46,7 @@
                 i++;
             });
         }
-        var images = getImages();
+        getImages();
         
     </script>
     <style>
@@ -66,9 +66,15 @@
         }
     </style>
 </head>
-<body>
+<body class="bg-light">
     <div class="container">
-        <h1>lista de imagem</h1>
+        <nav class="navbar navbar-light">
+            <h1>lista de imagem</h1>
+            <form class="form-inline">
+              <input class="form-control mr-sm-2" type="search" placeholder="Procurar por imagem" aria-label="Search">
+              <button class="btn btn-outline-success my-2 my-sm-0" onclick="alert('funciona')" type="submit">Buscar</button>
+            </form>
+          </nav>
         <div id="myList"></div>
     </div>
 </body>
