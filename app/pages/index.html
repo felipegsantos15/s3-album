@@ -17,15 +17,28 @@
         }
 
         listImages = (images) => {
-            var ul = document.createElement('ul');
-            document.getElementById('myList').appendChild(ul);
+            var divRow = document.createElement('div');
+            divRow.className = 'row';
+            document.getElementById('myList').appendChild(divRow);
+            let i = 0;
             images.forEach(image => {
-                var li = document.createElement('li');
+                var main = document.createElement('div');
+                main.className = 'col-sm box';
+                divRow.append(main);
+                
                 var img = document.createElement('img');
-                li.appendChild(img);
-                ul.appendChild(li);
-                img.src += image;
+                img.className = 'frame';
+                main.append(img);
+                
+                var text = document.createElement('a');
+                text.className = 'text';
+                text.href = image;
+                text.innerHTML = '<br><div class=text-box>URL DA IMAGEM</div>';
+                main.append(text);
 
+                img.src = image;
+                img.id = 'list-'+ i;
+                i++;
             });
         }
         var images = getImages();
@@ -33,7 +46,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>me de imagens</h1>
+        <h1>lista de imagem</h1>
         <div id="myList"></div>
     </div>
 </body>
