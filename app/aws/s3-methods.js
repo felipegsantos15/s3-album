@@ -22,5 +22,23 @@ module.exports = {
         } catch (error) {
             throw error;
         }
+    },
+    getImageByName: async (imageName) => {
+        try {
+            let objects = [];
+            const response = s3.listObjectsV2({
+                Bucket: "pointer-media",
+                Prefix: imageName
+            }).promise();
+    
+            await response.then(data => {
+                for (let i = 0; i < data.Contents.length; i++) {
+                    objects.push("https://pointer-media.s3-sa-east-1.amazonaws.com/"+data.Contents[i].Key); 
+                }
+            });
+            return objects;
+        } catch (error) {
+            throw error;
+        }
     }
 };

@@ -16,7 +16,19 @@
             listImages(images);
         }
 
+        getImages = async () => {
+            let imageUrl = document.getElementById("searchBox").value;
+            let images = [];
+            await fetch('http://localhost:7345/get/'+imageUrl)
+            .then((response) => {return response.json()})
+            .then(res => {
+                images = res.data;
+            });
+            listImages(images);
+        }
+        
         listImages = (images) => {
+            document.getElementById("myList").innerHTML = "";
             var divRow = document.createElement('div');
             divRow.className = 'row';
             document.getElementById('myList').appendChild(divRow);
@@ -45,9 +57,7 @@
                 img.id = 'list-'+ i;
                 i++;
             });
-        }
-        init();
-        
+        }   
     </script>
     <style>
         .frame {
@@ -66,14 +76,14 @@
         }
     </style>
 </head>
-<body class="bg-light">
+<body class="bg-light" onload="init()">
     <div class="container">
         <nav class="navbar navbar-light">
             <h1>lista de imagem</h1>
-            <form class="form-inline">
-              <input class="form-control mr-sm-2" type="search" placeholder="Procurar por imagem" aria-label="Search">
-              <button class="btn btn-outline-success my-2 my-sm-0" onclick="alert('funciona')" type="submit">Buscar</button>
-            </form>
+            <div class="form-inline">
+                <input class="form-control mr-sm-2" id="searchBox" placeholder="Procurar por prefixo" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" onclick="getImages()">Buscar</button>
+            </div>
           </nav>
         <div id="myList"></div>
     </div>
